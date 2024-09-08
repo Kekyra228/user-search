@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import User from "../user/User";
 
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  return <div>Список всех пользователей</div>;
+const UsersList = ({ users }) => {
+  return (
+    <div>
+      {Array.isArray(users) && users.length === 0
+        ? "Не найдено пользователей"
+        : ""}
+      {Array.isArray(users) &&
+        users.map((user) => <User key={user.id} user={user} />)}
+    </div>
+  );
 };
 
 export default UsersList;

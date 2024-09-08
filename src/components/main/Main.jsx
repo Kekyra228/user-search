@@ -11,10 +11,17 @@ import SearchBar from "../searchBar/SearchBar";
 // export default Main;
 
 const Main = () => {
+  const [users, setUsers] = useState([]);
+
+  //в параметры передаем резултат поиска из апи и обновляем состояние
+  function showFoundUsers(searchResult) {
+    setUsers(searchResult.items);
+  }
+  console.log(users);
   return (
     <>
-      <SearchBar />
-      <UsersList />
+      <SearchBar searchResult={showFoundUsers} />
+      <UsersList users={users} />
     </>
   );
 };

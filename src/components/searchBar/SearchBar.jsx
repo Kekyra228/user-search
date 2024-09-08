@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { getUsers } from "../../api/getUsers";
 
-const SearchBar = () => {
+const SearchBar = ({ searchResult }) => {
   const [searchValue, setSearchValue] = useState("");
   async function searchUser() {
-    const searchResult = await getUsers(searchValue);
-    console.log(searchResult);
+    const foundUsers = await getUsers(searchValue);
+    searchResult(foundUsers);
+    console.log(foundUsers);
   }
   return (
     <div>

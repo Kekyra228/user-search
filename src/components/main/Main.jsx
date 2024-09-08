@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import UsersList from "../usersList/UsersList";
 import SearchBar from "../searchBar/SearchBar";
 import { Wrapper } from "./Main.styled";

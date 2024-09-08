@@ -6,14 +6,15 @@ export const Wrapper = styled.div`
 
 export const UserInfoContain = styled.div`
   display: flex;
-  align-items: center;
   gap: 30px;
-  & h3 {
-    color: rebeccapurple;
-  }
 `;
 
 export const UserAvatar = styled.img`
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+`;
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

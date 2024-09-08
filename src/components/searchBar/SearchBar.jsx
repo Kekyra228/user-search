@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import { getUsers } from "../../api/getUsers";
+import { Button, InputLogin } from "./SearchBar.styled";
 
-const SearchBar = ({ searchResult }) => {
+const SearchBar = ({ searchResult, setIsLoading }) => {
   const [searchValue, setSearchValue] = useState("");
   async function searchUser() {
-    const foundUsers = await getUsers(searchValue);
-    searchResult(foundUsers);
-    console.log(foundUsers);
+    setIsLoading(true);
+    try {
+      const foundUsers = await getUsers(searchValue);
+      searchResult(foundUsers);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   }
   return (
     <div>
       <div>
-        <input
+        <InputLogin
           type="search"
           value={searchValue}
           placeholder="Введите имя пользователя"
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button onClick={searchUser}>Найти</button>
+        <Button onClick={searchUser}>Найти</Button>
       </div>
     </div>
   );

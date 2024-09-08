@@ -1,5 +1,5 @@
 import React from "react";
-import { UserAvatar, UserInfoContain, Wrapper } from "./User.styled";
+import { UserAvatar, UserInfo, UserInfoContain, Wrapper } from "./User.styled";
 
 const User = ({ user }) => {
   console.log(user);
@@ -7,7 +7,10 @@ const User = ({ user }) => {
     <Wrapper>
       <UserInfoContain>
         <UserAvatar src={user.avatar_url} alt={user.login} />
-        <h3>{user.login}</h3>
+        <UserInfo>
+          <h3>{user.login}</h3>
+          <p>{user.id}</p>
+        </UserInfo>
       </UserInfoContain>
     </Wrapper>
   );

@@ -11,4 +11,6 @@ export const UserItem = styled.div`
   padding: 15px;
   border-radius: 10px;
   background-color: #fff;
+  background-color: ${(props) => (props.isSelected ? "#cceeff" : "white")};
+  border-color: ${(props) => (props.isSelected ? "#0077cc" : "transparent")};
 `;

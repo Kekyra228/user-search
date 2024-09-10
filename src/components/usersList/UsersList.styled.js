@@ -14,3 +14,18 @@ export const UserItem = styled.div`
   background-color: ${(props) => (props.isSelected ? "#cceeff" : "white")};
   border-color: ${(props) => (props.isSelected ? "#0077cc" : "transparent")};
 `;
+
+export const Pagination = styled.div`
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  & button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+`;

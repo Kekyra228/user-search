@@ -16,7 +16,26 @@ export const Button = styled.button`
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 `;
-
+export const SearchButton = styled.button`
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 12px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+`;
+export const SearchContain = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 export const InputLogin = styled.input`
   width: 100%;
   max-width: 400px;

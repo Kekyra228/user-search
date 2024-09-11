@@ -28,4 +28,8 @@ export const Pagination = styled.div`
     cursor: pointer;
     border-radius: 5px;
   }
+  & button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
 `;

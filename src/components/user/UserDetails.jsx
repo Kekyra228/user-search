@@ -36,7 +36,7 @@ const UserDetails = () => {
   return (
     <ModalOverlay>
       <Modal>
-        <h3>Подробности о пользователе {user.login}</h3>
+        <h3>Подробности о {user.login}</h3>
         <p>ID: {user.id}</p>
         <p>Подписчики: {details.followers}</p>
         <p>Описание: {details.bio || "Нет описания"}</p>

@@ -10,10 +10,19 @@ export async function getUsers(searchValue) {
 }
 
 export async function getUserDetails(username) {
-  const response = await fetch(`https://api.github.com/users/${username}`);
-  if (!response.ok) {
-    throw new Error("Ошибка при получении данных пользователя");
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+
+    if (!response.ok) {
+      throw new Error(
+        `Ошибка при получении данных пользователя: ${response.statusText}`
+      );
+    }
+
+    const userDetails = await response.json();
+    return userDetails;
+  } catch (error) {
+    console.error("Ошибка при выполнении запроса к API GitHub:", error);
+    throw error;
   }
-  const userDetails = await response.json();
-  return userDetails;
 }

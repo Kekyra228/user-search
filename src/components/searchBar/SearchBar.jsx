@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { getUsers } from "../../api/getUsers";
-import { Button, InputLogin } from "./SearchBar.styled";
+import {
+  Button,
+  InputLogin,
+  SearchButton,
+  SearchContain,
+} from "./SearchBar.styled";
 
-const SearchBar = ({ searchResult, setIsLoading }) => {
+const SearchBar = ({ searchResult, setIsLoading, setSortOrder }) => {
   const [searchValue, setSearchValue] = useState("");
   async function searchUser() {
     setIsLoading(true);
@@ -25,6 +30,14 @@ const SearchBar = ({ searchResult, setIsLoading }) => {
         />
         <Button onClick={searchUser}>Найти</Button>
       </div>
+      <SearchContain>
+        <SearchButton onClick={() => setSortOrder("asc")}>
+          Сортировать по возрастанию
+        </SearchButton>
+        <SearchButton onClick={() => setSortOrder("desc")}>
+          Сортировать по убыванию
+        </SearchButton>
+      </SearchContain>
     </div>
   );
 };

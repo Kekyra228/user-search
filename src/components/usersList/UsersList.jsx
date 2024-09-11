@@ -1,21 +1,45 @@
 import { useNavigate } from "react-router-dom";
 import User from "../user/User";
 import { Pagination, UserItem, Wrapper } from "./UsersList.styled";
-import { useState } from "react";
-import UserDetails from "../user/UserDetails";
+import { useEffect, useState } from "react";
+import { getUserDetails } from "../../api/getUsers";
 
-const UsersList = ({ users, isLoading }) => {
+const UsersList = ({ users, isLoading, sortOrder }) => {
   const [selectedUser, setSelectedUser] = useState(null); //выбранный пользователь при клике
-  const [isOpen, setIsOpen] = useState(false);
+  const [detailedUsers, setDetailedUsers] = useState([]); // Состояние для хранения пользователей с полной информацией
+
+  useEffect(() => {
+    async function fetchDetails() {
+      const usersWithDetails = await Promise.all(
+        //делаем запрос на каждого пользователя параллельно
+        users.map(async (user) => {
+          const details = await getUserDetails(user.login);
+          return { ...user, ...details }; //получаем базовые данные и детализацию по юзеру и объединяем
+        })
+      );
+      setDetailedUsers(usersWithDetails);
+    }
+
+    if (users.length > 0) {
+      fetchDetails();
+    }
+  }, [users]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 6;
 
+  const sortedUsers = [...detailedUsers].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.public_repos - b.public_repos; // Сортировка по возрастанию
+    } else {
+      return b.public_repos - a.public_repos; // Сортировка по убыванию
+    }
+  });
+
   const indexOfLastUser = currentPage * usersPerPage; // Последний пользователь на странице
   const indexOfFirstUser = indexOfLastUser - usersPerPage; // Первый пользователь на странице
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser); // пользователи для текущей страницы
-  // Изменяем страницу
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber); // Изменяем страницу
 
   // общее количество страниц
   const totalPages = Math.ceil(users.length / usersPerPage);

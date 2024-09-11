@@ -2,7 +2,6 @@ import React from "react";
 import { UserAvatar, UserInfo, UserInfoContain, Wrapper } from "./User.styled";
 
 const User = ({ user }) => {
-  console.log(user);
   return (
     <Wrapper>
       <UserInfoContain>

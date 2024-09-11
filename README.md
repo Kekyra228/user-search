@@ -29,7 +29,7 @@
    git clone https://github.com/Kekyra228/user-search.git
 
 2. Перейдите в директорию проекта:
-   cd users-search
+   cd user-search
    
 3. Установите зависимости:
    npm install

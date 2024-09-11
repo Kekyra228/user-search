@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CloseButton, Modal, ModalOverlay } from "./UserDetails.styled";
 import { paths } from "../../lib/paths";
 import { getUserDetails } from "../../api/getUsers";
@@ -43,7 +43,9 @@ const UserDetails = () => {
         <p>
           Ссылка на профиль: <a href={details.html_url}>{details.html_url}</a>
         </p>
-        <CloseButton onClick={closeModal}>⛔</CloseButton>
+        <CloseButton data-testid="close-button" onClick={closeModal}>
+          ⛔
+        </CloseButton>
       </Modal>
     </ModalOverlay>
   );
